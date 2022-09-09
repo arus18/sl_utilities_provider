@@ -99,19 +99,19 @@
           <div class="features_items">
             <!--features_items-->
             <h2 class="title text-center">Services</h2>
-            <div class="col-sm-4">
+            <div class="col-sm-4" th:each="service : ${services}">
               <div class="product-image-wrapper">
                 <div class="single-products">
                   <div class="productinfo text-center">
-                    <img src="images/home/product1.jpg" alt="" />
-                    <h2>$56</h2>
-                    <p>Hair cutting</p>
+                    <img th:src="@{${'service-photos/' + service.getId() + service.getImage()}}" alt="" />
+                    <h2 th:text="${service.price}"></h2>
+                    <p th:text="${service.name}"></p>
                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Buy</a>
                   </div>
                   <div class="product-overlay">
                     <div class="overlay-content">
-                      <h2>$56</h2>
-                      <p>Hair cutting</p>
+                      <h2 th:text="${service.price}"></h2>
+                      <p th:text="${service.name}"></p>
                       <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Buy</a>
                     </div>
                   </div>
