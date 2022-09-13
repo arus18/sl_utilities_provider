@@ -56,7 +56,7 @@
             </div>
             <div class="mainmenu pull-left">
               <ul class="nav navbar-nav collapse navbar-collapse">
-                <li><a href="" class="active">Home</a></li>
+                <li><a href="/" class="active">Home</a></li>
                 <li><a href="">Tab1</a></li>
                 <li><a href="">Tab2</a></li>
                 <li><a href="">Tab3</a></li>
@@ -65,7 +65,10 @@
           </div>
           <div class="col-sm-3">
             <div class="search_box pull-right">
-              <input type="text" placeholder="Search" />
+              <form th:action="@{/services/search}">
+                <input type="text" placeholder="Search" name="searchInput"/>
+                <button type="submit" class="btn btn-primary">Search</button>
+              </form>
             </div>
           </div>
         </div>

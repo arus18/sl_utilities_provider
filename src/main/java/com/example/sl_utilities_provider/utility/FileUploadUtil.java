@@ -20,4 +20,10 @@ public class FileUploadUtil {
             throw new IOException("Could not save image file: " + fileName, ioe);
         }
     }
+
+    public static void deleteFile(String fileName){
+        String path = "service-photos/"+fileName;
+        File fileToDelete = new File(path);
+        boolean success = fileToDelete.delete();
+    }
 }

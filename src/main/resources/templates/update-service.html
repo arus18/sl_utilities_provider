@@ -16,137 +16,147 @@
   <link th:href="@{/css/main.css}" rel="stylesheet">
   <link th:href="@{/css/responsive.css}" rel="stylesheet">
   <!--[if lt IE 9]>
-    <script th:src="@{/js/html5shiv.js}"></script>
-    <script th:src="@{/js/respond.min.js}"></script>
-    <![endif]-->
+  <script th:src="@{/js/html5shiv.js}"></script>
+  <script th:src="@{/js/respond.min.js}"></script>
+  <![endif]-->
   <link rel="shortcut icon" th:href="@{/images/ico/favicon.ico}">
 </head>
 <!--/head-->
 
 <body>
-  <header id="header">
-    <!--header-->
-    <div class="header-middle">
-      <!--header-middle-->
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="logo pull-left">
-              <a href="index.html"><img src="images/home/logo.png" alt="" /></a>
-            </div>
+<header id="header">
+  <!--header-->
+  <div class="header-middle">
+    <!--header-middle-->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="logo pull-left">
+            <a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+          </div>
 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/header-middle-->
+
+  <div class="header-bottom">
+    <!--header-bottom-->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="mainmenu pull-left">
+            <ul class="nav navbar-nav collapse navbar-collapse">
+              <li><a href="index.html" class="active">Home</a></li>
+              <li><a href="">Tab1</a></li>
+              <li><a href="">Tab2</a></li>
+              <li><a href="">Tab3</a></li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-    <!--/header-middle-->
+  </div>
+  <!--/header-bottom-->
+</header>
+<!--/header-->
 
-    <div class="header-bottom">
-      <!--header-bottom-->
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-9">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="left-sidebar">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="features_items">
+          <h2 class="title text-center">Update Service</h2>
+          <form th:action="@{/services/add}" th:object="${service}" method="post" enctype="multipart/form-data">
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <input type="hidden" class="form-control" th:field="*{Id}">
+              </div>
             </div>
-            <div class="mainmenu pull-left">
-              <ul class="nav navbar-nav collapse navbar-collapse">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="">Tab1</a></li>
-                <li><a href="">Tab2</a></li>
-                <li><a href="">Tab3</a></li>
-              </ul>
+            <div class="form-group row">
+              <label  class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{name}">
+              </div>
             </div>
-          </div>
+            <div class="form-group row">
+              <label  class="col-sm-2 col-form-label">Price</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{price}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Image</label>
+              <div class="col-sm-10">
+                <input type="file" name="image" accept="image/png, image/jpeg"/>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Category</label>
+              <div class="col-sm-10">
+                <select class="form-select" aria-label="Default select example" th:field="*{category}">
+                  <option selected>Category</option>
+                  <option value="1">Category1</option>
+                  <option value="2">Category2</option>
+                  <option value="3">Category3</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Image</label>
+              <div class="col-sm-10">
+                <select class="form-control" id="dropDownList" th:field="*{workerIDs}">
+                  <option value="0">select option</option>
+                  <option th:each="option : ${options}" th:value="${option.getId()}" th:text="${option.getName()}"></option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Add</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    <!--/header-bottom-->
-  </header>
-  <!--/header-->
-
-  <section>
+  </div>
+</section>
+<footer id="footer">
+  <!--Footer-->
+  <div class="footer-top">
     <div class="container">
       <div class="row">
         <div class="col-sm-3">
-          <div class="left-sidebar">
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="features_items">
-            <h2 class="title text-center">Update Service</h2>
-            <form th:action="@{/services/add}" th:object="${service}" method="post" enctype="multipart/form-data">
-              <div class="form-group row">
-                <div class="col-sm-10">
-                  <input type="hidden" class="form-control" th:field="*{Id}">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label  class="col-sm-2 col-form-label">Name</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" th:field="*{name}">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label  class="col-sm-2 col-form-label">Price</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" th:field="*{price}">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Image</label>
-                <div class="col-sm-10">
-                  <input type="file" name="image" accept="image/png, image/jpeg"/>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Image</label>
-                <div class="col-sm-10">
-                  <select class="form-control" id="dropDownList" th:field="*{workerIDs}">
-                    <option value="0">select option</option>
-                    <option th:each="option : ${options}" th:value="${option.getId()}" th:text="${option.getName()}"></option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-10">
-                  <button type="submit" class="btn btn-primary">Add</button>
-                </div>
-              </div>
-            </form>
+          <div class="companyinfo">
+            <h2><span>SL</span>Utilities Provider</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <footer id="footer">
-    <!--Footer-->
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="companyinfo">
-              <h2><span>SL</span>Utilities Provider</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
 
-  </footer>
-  <!--/Footer-->
-  <script th:src="@{/js/jquery.js}"></script>
-  <script th:src="@{/js/bootstrap.min.js}"></script>
-  <script th:src="@{/js/jquery.scrollUp.min.js}"></script>
-  <script th:src="@{/js/price-range.js}"></script>
-  <script th:src="@{/js/jquery.prettyPhoto.js}"></script>
-  <script th:src="@{/js/main.js}"></script>
+</footer>
+<!--/Footer-->
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.scrollUp.min.js}"></script>
+<script th:src="@{/js/price-range.js}"></script>
+<script th:src="@{/js/jquery.prettyPhoto.js}"></script>
+<script th:src="@{/js/main.js}"></script>
 </body>
-
 </html>

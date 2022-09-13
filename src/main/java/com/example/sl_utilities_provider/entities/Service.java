@@ -15,6 +15,8 @@ public class Service {
     private String name;
     private String price;
 
+    private String category;
+
     @Transient
     private List<String> workerIDs;
 
@@ -31,13 +33,22 @@ public class Service {
     public Service() {
     }
 
-    public Service(long id, String name, String price, List<String> workerIDs, List<Worker> workers, String image) {
-        this.serviceId = id;
+    public Service(long serviceId, String name, String price, String category, List<String> workerIDs, List<Worker> workers, String image) {
+        this.serviceId = serviceId;
         this.name = name;
         this.price = price;
+        this.category = category;
         this.workerIDs = workerIDs;
         this.workers = workers;
         this.image = image;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public List<String> getWorkerIDs() {

@@ -11,7 +11,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -40,18 +39,22 @@ public class ServiceControllerAdmin {
         return "add-service";
     }
     @PostMapping("add")
-    public String updateService(Service service, BindingResult result,@RequestParam("image") MultipartFile multipartFile) throws IOException {
+    public String addService(Service service, BindingResult result,@RequestParam("image") MultipartFile multipartFile) throws IOException {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         service.setImage(fileName);
         for(String id: service.getWorkerIDs()){
             Worker worker = workerRepo.findById(Long.valueOf(id)).get();
             service.getWorkers().add(worker);
         }
-        System.out.println(service.getId());
         serviceRepo.save(service);
         String uploadDir = new File("service-photos").getAbsolutePath();
         FileUploadUtil.saveFile(uploadDir, String.valueOf(service.getId())+fileName, multipartFile);
         return "redirect:list";
+    }
+    @GetMapping("search")
+    public String searchService(@RequestParam("searchInput") String searchInput,Model model){
+        model.addAttribute("services", serviceRepo.findServiceByName(searchInput));
+        return "services-list-admin";
     }
     @GetMapping("showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable( value = "id") long id, Model model) {
@@ -65,9 +68,15 @@ public class ServiceControllerAdmin {
 
     @GetMapping("deleteService/{id}")
     public String deleteService(@PathVariable (value = "id") long id) {
-
-        // call delete employee method
+        Service service = serviceRepo.findById(id).get();
         serviceRepo.deleteById(id);
-        return "redirect:/list";
+        FileUploadUtil.deleteFile(id+service.getImage());
+        return "redirect:/";
+    }
+
+    @GetMapping("category/{id}")
+    public String category(@PathVariable(value = "id") String id,Model model) {
+        model.addAttribute("services", serviceRepo.findServiceByCategory(id));
+        return "index";
     }
 }
