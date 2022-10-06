@@ -4,6 +4,8 @@ import com.example.sl_utilities_provider.entities.Worker;
 import com.example.sl_utilities_provider.repos.ServiceRepo;
 import com.example.sl_utilities_provider.repos.WorkerRepo;
 import com.example.sl_utilities_provider.utility.FileUploadUtil;
+import com.example.sl_utilities_provider.utility.PdfUtility;
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +13,13 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,5 +85,22 @@ public class ServiceControllerAdmin {
     public String category(@PathVariable(value = "id") String id,Model model) {
         model.addAttribute("services", serviceRepo.findServiceByCategory(id));
         return "index";
+    }
+
+    @GetMapping("report")
+    public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "inline; filename=users_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        List<Service> services = serviceRepo.findAll();
+
+        PdfUtility pdfUtility = new PdfUtility(services);
+        pdfUtility.export(response);
+
     }
 }
