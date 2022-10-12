@@ -1,7 +1,6 @@
 package com.example.sl_utilities_provider.controllers;
 
 
-import com.example.sl_utilities_provider.entities.Service;
 import com.example.sl_utilities_provider.entities.User;
 import com.example.sl_utilities_provider.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class UserController {
     @GetMapping("listUsers")
     public String userList(Model model){
         model.addAttribute("listUsers", userRepo.findAll());
-        return "user";
+        return "user-admin";
     }
 
 
