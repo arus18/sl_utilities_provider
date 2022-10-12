@@ -60,7 +60,10 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
+                        <form th:action="@{/users/search}">
+                            <input type="text" placeholder="Search" name="searchInput"/>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -77,13 +80,7 @@
                     <h2 class="title text-center"> User Details</h2>
                     <div class="pcontainer">
 
-                        <!-- <div class="card-container">
-                            <div class="image">
-                                    <img src="images/addpayment/chip.png" alt="">
-                                    <img src="images/addpayment/visa.png" alt="">
-                            </div>
 
-                        </div> -->
 
                         <table class="table table-striped" align="center">
                             <thead>
