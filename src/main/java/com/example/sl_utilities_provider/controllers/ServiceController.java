@@ -24,8 +24,6 @@ public class ServiceController {
         return "services-list-admin";
     }
 
-
-
     @GetMapping("add_service")
     public String showAddServiceForm(Service service) {
         return "add-service";

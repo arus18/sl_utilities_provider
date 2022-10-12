@@ -56,7 +56,7 @@
             </div>
             <div class="mainmenu pull-left">
               <ul class="nav navbar-nav collapse navbar-collapse">
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="/" class="active">Home</a></li>
                 <li><a href="">Tab1</a></li>
                 <li><a href="">Tab2</a></li>
                 <li><a href="">Tab3</a></li>
@@ -65,7 +65,10 @@
           </div>
           <div class="col-sm-3">
             <div class="search_box pull-right">
-              <input type="text" placeholder="Search" />
+              <form th:action="@{/services/search}">
+                <input type="text" placeholder="Search" name="searchInput"/>
+                <button type="submit" class="btn btn-primary">Search</button>
+              </form>
             </div>
           </div>
         </div>
@@ -100,19 +103,25 @@
               <a href="/services/add_service" class="btn btn-primary"><i
                       class="fas fa-user-plus ml-2"> Add Service</i></a>
             </p>
+            <p class="my-5">
+              <a href="/services/report" class="btn btn-primary" target="_blank"><i
+                      class="fas fa-user-plus ml-2"> Report</i></a>
+            </p>
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">Name</th>
                   <th scope="col">Price</th>
-                  <th scope="col">Worker</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
               <tr th:each="service : ${services}">
                 <td th:text="${service.name}"></td>
                 <td th:text="${service.price}"></td>
-                <td th:text="${service.worker}"></td>
+                <td> <a th:href="@{/services/showFormForUpdate/{id}(id=${service.getId()})}" class="btn btn-primary">Update</a>
+                  <a th:href="@{/services/deleteService/{id}(id=${service.getId()})}" class="btn btn-danger">Delete</a>
+                </td>
               </tr>
               </tbody>
             </table>
