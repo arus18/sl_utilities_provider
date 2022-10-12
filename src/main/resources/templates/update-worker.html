@@ -1,10 +1,185 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Template</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+  <link th:href="@{/css/prettyPhoto.css}" rel="stylesheet">
+  <link th:href="@{/css/price-range.css}" rel="stylesheet">
+  <link th:href="@{/css/animate.css}" rel="stylesheet">
+  <link th:href="@{/css/main.css}" rel="stylesheet">
+  <link th:href="@{/css/responsive.css}" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script th:src="@{/js/html5shiv.js}"></script>
+  <script th:src="@{/js/respond.min.js}"></script>
+  <![endif]-->
+  <link rel="shortcut icon" th:href="@{/images/ico/favicon.ico}">
 </head>
+<!--/head-->
+
 <body>
-$END$
+<header id="header">
+  <!--header-->
+  <div class="header-middle">
+    <!--header-middle-->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="logo pull-left">
+            <a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/header-middle-->
+
+  <div class="header-bottom">
+    <!--header-bottom-->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="mainmenu pull-left">
+            <ul class="nav navbar-nav collapse navbar-collapse">
+              <li><a href="index.html" class="active">Home</a></li>
+              <li><a href="">Tab1</a></li>
+              <li><a href="/workers/workerList">Worker List</a></li>
+              <li><a href="">Tab3</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/header-bottom-->
+</header>
+<!--/header-->
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="left-sidebar">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="features_items">
+          <h2 class="title text-center">Update Worker</h2>
+          <form th:action="@{/workers/addWorker}" th:object="${worker}" method="POST" enctype="multipart/form-data">
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <input type="hidden" class="form-control" th:field="*{id}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label  class="col-sm-2 col-form-label">ID</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{nic}" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label  class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{name}" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label  class="col-sm-2 col-form-label">Address</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{address}" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label  class="col-sm-2 col-form-label">Age</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{age}" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label  class="col-sm-2 col-form-label">Contact Number</label>
+              <div class="col-sm-10">
+                <input type="tel" class="form-control" th:field="*{contact}" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label  class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" th:field="*{email}" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label  class="col-sm-2 col-form-label">Providing Service</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{service}" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label  class="col-sm-2 col-form-label">Service Category</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{category}" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label  class="col-sm-2 col-form-label">Mode of Transport</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{transport}" required>
+              </div>
+            </div>
+            <!--<div class="form-group row">
+              <label  class="col-sm-2 col-form-label">Photo</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{img}">
+              </div>
+            </div>-->
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer id="footer">
+  <!--Footer-->
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="companyinfo">
+            <h2><span>SL</span>Utilities Provider</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+<!--/Footer-->
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.scrollUp.min.js}"></script>
+<script th:src="@{/js/price-range.js}"></script>
+<script th:src="@{/js/jquery.prettyPhoto.js}"></script>
+<script th:src="@{/js/main.js}"></script>
 </body>
+
 </html>

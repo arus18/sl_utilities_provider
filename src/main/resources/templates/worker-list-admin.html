@@ -65,7 +65,9 @@
         </div>
         <div class="col-sm-3">
           <div class="search_box pull-right">
-            <input type="text" placeholder="Search" />
+            <form th:action="@{/workers/search}">
+              <input type="text" placeholder="Search" name="searchInput"/>
+              <button type="submit" class="btn btn-primary">Search</button>
           </div>
         </div>
       </div>
@@ -95,7 +97,7 @@
               <th scope="col">Providing service</th>
               <th scope="col">Category</th>
               <th scope="col">Transport Mode</th>
-              <th scope="col">Photo</th>
+              <!--<th scope="col">Photo</th>-->
             </tr>
             </thead>
             <tbody>
@@ -109,12 +111,24 @@
               <td th:text="${worker.service}"></td>
               <td th:text="${worker.category}"></td>
               <td th:text="${worker.transport}"></td>
-              <td th:text="${worker.img}"></td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <!--features_items-->
+              <!--<td th:text="${worker.img}"></td>-->
+
+              <td>
+                <a th:href="@{/workers/showWorkerUpdateForm/{id}(id=${worker.getId()})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/workers/deleteWorker/{id}(id=${worker.getId()})}" class="btn btn-danger">Delete</a>
+           </td>
+
+         </tr>
+         </tbody>
+       </table>
+
+  <p class="my-5">
+    <a href="/workers/report" class="btn btn-primary" target="_blank"><i
+            class="fas fa-user-plus ml-2"> Report</i></a>
+  </p>
+
+     </div>
+     <!--features_items-->
       </div>
     </div>
   </div>

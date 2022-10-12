@@ -3,6 +3,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
@@ -25,6 +26,7 @@
 <!--/head-->
 
 <body>
+
 <header id="header">
   <!--header-->
   <div class="header-middle">
@@ -66,7 +68,9 @@
         </div>
         <div class="col-sm-3">
           <div class="search_box pull-right">
-            <input type="text" placeholder="Search" />
+            <form th:action="@{/inquiries/search}">
+            <input type="text" placeholder="Search" name="searchInput"/>
+              <button type="submit" class="btn btn-primary">Search</button>
           </div>
         </div>
       </div>
@@ -114,12 +118,18 @@
       <td th:text="${inquiry.iemail}"></td>
 
       <td>
-
-       <a class="h4 mr-3" th:href="@{'inquiries/delete' + ${inquiry.id}}">Delete</a>
+      <td>
+        <a th:href="@{/inquiries/deleteInquiry/{id}(id=${inquiry.getId()})}" class="btn btn-danger">Delete</a>
       </td>
     </tr>
+
+    <!--<p class="my-5">
+      <a href="/workers/report" class="btn btn-primary" target="_blank"><i
+              class="fas fa-user-plus ml-2"> Report</i></a>
+    </p>-->
     </tbody>
   </table>
+
   </div>
   <!--features_items-->
   </div>
