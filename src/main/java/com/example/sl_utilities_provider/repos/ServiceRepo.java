@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ServiceRepo extends JpaRepository<Service, Long> {
+    Service findServiceByName(String name);
+    Service findServiceByCategory(String category);
 }

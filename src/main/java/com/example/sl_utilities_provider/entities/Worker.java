@@ -1,6 +1,14 @@
 package com.example.sl_utilities_provider.entities;
 
+import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.IdentifierGenerator;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 @Entity
 @Table(name = "workers")
@@ -10,7 +18,9 @@ public class Worker {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+
     private String nic;
+
     private String name;
     private String address;
     private String age;
@@ -127,5 +137,4 @@ public class Worker {
     public void setImg(String img) {
         this.img = img;
     }
-
 }
