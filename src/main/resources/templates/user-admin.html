@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/prettyPhoto.css}" rel="stylesheet">
+    <link th:href="@{/css/price-range.css}" rel="stylesheet">
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet">
+    <link th:href="@{/css/addpayment.css}" rel="stylesheet">
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+</head>
+<body>
+<header id="header"><!--header-->
+    <div class="header-middle"><!--header-middle-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="logo pull-left">
+                        <a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div><!--/header-middle-->
+
+    <div class="header-bottom"><!--header-bottom-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="mainmenu pull-left">
+                        <ul class="nav navbar-nav collapse navbar-collapse">
+                            <li><a href="index.html" class="active">Home</a></li>
+                            <li><a href="/services/list">Tab1</a></li>
+                            <li><a href="/users/listUsers">Tab2</a></li>
+                            <li><a href="/users/add_user">Tab3</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="search_box pull-right">
+                        <form th:action="@{/users/search}">
+                            <input type="text" placeholder="Search" name="searchInput"/>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header-bottom-->
+</header><!--/header-->
+
+<section>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items"><!--features_items-->
+                    <h2 class="title text-center"> User Details</h2>
+                    <div class="pcontainer">
+
+
+
+                        <table class="table table-striped" align="center">
+                            <thead>
+                            <tr>
+                                <th scope="col">First Name </th>
+                                <th scope="col">Last Name </th>
+                                <th scope="col">Email </th>
+                                <th scope="col">Address </th>
+                                <th scope="col">Gender </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="user : ${listUsers}">
+                                <td th:text="${user.firstName}"></td>
+                                <td th:text="${user.lastName}"></td>
+
+                                <td th:text="${user.email}"></td>
+
+                                <td th:text="${user.address}"></td>
+
+                                <td th:text="${user.gender}"></td>
+
+                                <td> <!a th:href="@{/users/showFormForUpdate/{id}(id=${user.getId()})}" class="btn btn-primary"><!/a!>
+                                    <a th:href="@{/users/deleteUser/{id}(id=${user.getId()})}"  class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div><!--features_items-->
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer"><!--Footer-->
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="companyinfo">
+                        <h2><span>SL</span>Utilities Provider</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer><!--/Footer-->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/price-range.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

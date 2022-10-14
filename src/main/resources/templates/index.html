@@ -37,6 +37,7 @@
             <div class="logo pull-left">
               <a href="index.html"><img src="images/home/logo.png" alt="" /></a>
             </div>
+
           </div>
         </div>
       </div>
@@ -60,17 +61,14 @@
               <ul class="nav navbar-nav collapse navbar-collapse">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="/services/list">Tab1</a></li>
-                <li><a href="">Tab2</a></li>
-                <li><a href="">Tab3</a></li>
+                <li><a href="/users/add_user">Registration</a></li>
+                <li><a href="/users/listUsers">Tab 3</a></li>
               </ul>
             </div>
           </div>
           <div class="col-sm-3">
             <div class="search_box pull-right">
-              <form th:action="@{/search}">
-                <input type="text" placeholder="Search" name="searchInput"/>
-                <button type="submit" class="btn btn-primary">Search</button>
-              </form>
+              <input type="text" placeholder="Search" />
             </div>
           </div>
         </div>

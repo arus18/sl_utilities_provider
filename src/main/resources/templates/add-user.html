@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>User Registration</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/prettyPhoto.css}" rel="stylesheet">
+    <link th:href="@{/css/price-range.css}" rel="stylesheet">
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script th:src="@{/js/html5shiv.js}"></script>
+    <script th:src="@{/js/respond.min.js}"></script>
+    <![endif]-->
+    <link rel="shortcut icon" th:href="@{/images/ico/favicon.ico}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head>
+<!--/head-->
+
+<body>
+<header id="header">
+    <!--header-->
+    <div class="header-middle">
+        <!--header-middle-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="logo pull-left">
+                        <a href="/index.html"><img src="images/home/logo.png" alt="" /></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/header-middle-->
+
+    <div class="header-bottom">
+        <!--header-bottom-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/header-bottom-->
+</header>
+<!--/header-->
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="features_items">
+                    <h2 class="title text-center">Registration</h2>
+                    <form th:action="@{/users/register}" th:object="${user}" method="post">
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">First Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{firstName}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">Last Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{lastName}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" th:field="*{email}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">New Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" th:field="*{password}" required>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">Address</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{address}" required>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">Gender</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{gender}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <button type="submit" href="index.html" class="btn btn-primary">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <!--Footer-->
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="companyinfo">
+                        <h2><span>SL</span>Utilities Provider</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<!--/Footer-->
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.scrollUp.min.js}"></script>
+<script th:src="@{/js/price-range.js}"></script>
+<script th:src="@{/js/jquery.prettyPhoto.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+
+</html>
