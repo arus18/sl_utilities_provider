@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Template</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+  <link th:href="@{/css/prettyPhoto.css}" rel="stylesheet">
+  <link th:href="@{/css/price-range.css}" rel="stylesheet">
+  <link th:href="@{/css/animate.css}" rel="stylesheet">
+  <link th:href="@{/css/main.css}" rel="stylesheet">
+  <link th:href="@{/css/responsive.css}" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script th:src="@{/js/html5shiv.js}"></script>
+  <script th:src="@{/js/respond.min.js}"></script>
+  <![endif]-->
+  <link rel="shortcut icon" th:href="@{/images/ico/favicon.ico}">
+</head>
+<!--/head-->
+
+<body>
+<header id="header">
+  <!--header-->
+  <div class="header-middle">
+    <!--header-middle-->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="logo pull-left">
+            <a href="index.html"><img th:src="@{/images/home/logo.png}" alt="" /></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/header-middle-->
+
+  <div class="header-bottom">
+    <!--header-bottom-->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="mainmenu pull-left">
+            <ul class="nav navbar-nav collapse navbar-collapse">
+              <li><a href="index.html" class="active">Home</a></li>
+              <li><a href="">Tab1</a></li>
+              <li><a href="">Tab2</a></li>
+              <li><a href="/inquiries/inquiryList">Inquiry List</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="search_box pull-right">
+            <form th:action="@{/workers/search}">
+              <input type="text" placeholder="Search" name="searchInput"/>
+              <button type="submit" class="btn btn-primary">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/header-bottom-->
+</header>
+<!--/header-->
+
+<section>
+          <h2 class="title text-center">List of Workers</h2>
+          <p class="my-5">
+            <a href="/workers/add_worker" class="btn btn-primary"><i
+                    class="fas fa-user-plus ml-2"> Add Worker</i></a>
+          </p>
+          <br>
+
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">NIC</th>
+              <th scope="col">Name</th>
+              <th scope="col">Address</th>
+              <th scope="col">Age</th>
+              <th scope="col">Contact No</th>
+              <th scope="col">Email</th>
+              <th scope="col">Providing service</th>
+              <th scope="col">Category</th>
+              <th scope="col">Transport Mode</th>
+              <!--<th scope="col">Photo</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="worker : ${workers}">
+              <td th:text="${worker.nic}"></td>
+              <td th:text="${worker.name}"></td>
+              <td th:text="${worker.address}"></td>
+              <td th:text="${worker.age}"></td>
+              <td th:text="${worker.contact}"></td>
+              <td th:text="${worker.email}"></td>
+              <td th:text="${worker.service}"></td>
+              <td th:text="${worker.category}"></td>
+              <td th:text="${worker.transport}"></td>
+              <!--<td th:text="${worker.img}"></td>-->
+
+              <td>
+                <a th:href="@{/workers/showWorkerUpdateForm/{id}(id=${worker.getId()})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/workers/deleteWorker/{id}(id=${worker.getId()})}" class="btn btn-danger">Delete</a>
+           </td>
+
+         </tr>
+         </tbody>
+       </table>
+
+  <p class="my-5">
+    <a href="/workers/report" class="btn btn-primary" target="_blank"><i
+            class="fas fa-user-plus ml-2"> Report</i></a>
+  </p>
+
+     </div>
+     <!--features_items-->
+      </div>
+    </div>
+  </div>
+</section>
+<footer id="footer">
+  <!--Footer-->
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="companyinfo">
+            <h2><span>SL</span>Utilities Provider</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+<!--/Footer-->
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.scrollUp.min.js}"></script>
+<script th:src="@{/js/price-range.js}"></script>
+<script th:src="@{/js/jquery.prettyPhoto.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+
+</html>
