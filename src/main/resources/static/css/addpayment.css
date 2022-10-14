@@ -1,0 +1,171 @@
+.paymentform{
+    font-family: 'Poppins',sans-serif;
+    margin:0;padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    width:450px;
+}
+
+.pcontainer{
+
+    min-height: 100px;
+    background: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    padding-bottom: 60px;
+}
+.pcontainer form{
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px rgb(0,0,0,.1);
+    padding: 20px;
+    width: 450px;
+}
+
+.pcontainer form .input-paymentBox{
+    margin-top: 20px;
+
+}
+
+.pcontainer form .inputpaymnetBox span{
+    display: block;
+    color: #999;
+    border-radius: 25px;
+    padding-bottom: 10px;
+    gap: 20px;
+}
+.pcontainer form .inputpaymnetBox card-number-input{
+   margin-top: 20px;
+   border-radius : 15px;
+
+}
+
+.bottom_aligner {
+    display: inline-block;
+    height: 100%;
+    vertical-align: bottom;
+    width: 30px;
+}
+.pcontainer form .inputpaymnetBox select{
+   width: 100%;
+
+   border-radius: 35px;
+   border: 1px solid rgb(0,0,0,.3);
+   color:#444;
+
+}
+
+.pcontainer form .flexbox{
+  display: flex;
+  gap:10pxpx;
+}
+
+.pcontainer form .flexbox . inputpaymnetBox{
+  flex:1 1 150px;
+}
+
+
+
+.pcontainer form .payment-submit-btn{
+   width:100px;
+   background:#FE980F;
+   margin-top:20px;
+   margin-right:20px;
+   padding: 5px;
+   align : center;
+   border-radius:22px;
+   font-size:10px;
+   transition: .2s linear;
+}
+
+.pcontainer form .payment-submit-btn:hover{
+   letter-spacing: 2px;
+   opacity: .8;
+
+}
+
+.pcontainer button {
+    margin-right:20px;
+    width:150px;
+    background:#FE980F;
+    margin-top:20px;
+    border-radius:40px;
+    font-size:15px;
+    color:#fff;
+    transition: .2s linear;
+
+}
+
+.cvv-input{
+   width:60px;
+}
+
+.card-number-input{
+  width: 260px;
+}
+
+.card-holder-input{
+  width: 260px;
+}
+
+.svBtn{
+  display:flex;
+  justify-content:flex-end;
+  margin-right:35px;
+
+
+
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 35%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.conBtn{
+ color: Black;
+ font-weight: bold;
+ background-color:#FE980F;
+ font-size:12px;
+ transition: .2s linear;
+ cursor: pointer;
+ margin-left: 75%;
+
+}
