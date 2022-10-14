@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/payments/")
@@ -42,6 +43,16 @@ public class PaymentController {
         paymentRepo.save(payment);
         return "redirect:list";
     }
+
+//    @GetMapping("showFormForUpdate/{id}")
+//    public String showFormForUpdate(@PathVariable( value = "id") long id, Model model) {
+//        Payment payment = paymentRepo.findById(id).get();
+//        payment.setId(payment.getPaymen().stream().map(w -> String.valueOf(w.getId())).collect(Collectors.toList()));
+//        model.addAttribute("payment", payment);
+//        List<Payment> workers = workerRepo.findAll();
+//        model.addAttribute("options", workers);
+//        return "update-service";
+//    }
 
     @GetMapping("deletePayment/{id}")
     public String deletePayment(@PathVariable(value = "id") long id) {
