@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 @Entity
 @Table(name = "workers")
@@ -16,7 +17,7 @@ public class Worker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long worker_id;
 
 
     private String nic;
@@ -26,36 +27,56 @@ public class Worker {
     private String age;
     private String contact;
     private String email;
-    private String service;
+
     private String category;
     private String transport;
+
+    public long getWorker_id() {
+        return worker_id;
+    }
+
+    public void setWorker_id(long worker_id) {
+        this.worker_id = worker_id;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    private String serviceName;
     private String img;
 
     public Worker() {
     }
 
 
-    public Worker(long id, String nic, String name, String address, String age, String contact, String email, String service, String category, String transport, String img) {
-        this.id = id;
+    public Worker(String serviceName,long id, String nic, String name, String address, String age, String contact, String email, List<Service> list, String category, String transport, String img) {
+        this.worker_id = id;
         this.nic = nic;
         this.name = name;
         this.address = address;
         this.age = age;
         this.contact = contact;
         this.email = email;
-        this.service = service;
         this.category = category;
         this.transport = transport;
         this.img = img;
-
+        this.service = list;
+        this.serviceName = serviceName;
     }
 
+    @ManyToMany(mappedBy = "workers")
+    private List<Service> service;
     public long getId() {
-        return id;
+        return worker_id;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.worker_id = id;
     }
 
     public String getNic() {
@@ -106,12 +127,12 @@ public class Worker {
         this.email = email;
     }
 
-    public String getService() {
+    public List<Service> getService() {
         return service;
     }
 
-    public void setService(String service) {
-        this.service = service;
+    public void setService(List<Service> list) {
+        this.service = list;
     }
 
     public String getCategory() {

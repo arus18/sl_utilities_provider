@@ -84,7 +84,7 @@
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Add Card Details</h2>
-                    <div class="pcontainer" >
+                    <div class="pcontainer"th:object="${service}"  >
 
                         <!-- <div class="card-container">
                             <div class="image">
@@ -94,7 +94,7 @@
 
                         </div> -->
 
-                        <form th:action="@{/payments/add}" th:object="${payment}" method="post" class="paymentform">
+                        <form th:action="@{/payments/add/{id}(id=${service.getId()})}" th:object="${payment}" method="post" class="paymentform">
                             <div class="inputpaymentBox" >
                                 <span>Card number</span>
                                 <input th:field="*{cnumber}" type="text" maxlength="16"  class="card-number-input" style="width=100px" required>

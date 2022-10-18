@@ -72,7 +72,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    public void setPassword(String lastName) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

@@ -11,11 +11,11 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
-public class PdfUtility {
+public class PdfUtilityService {
 
     private List<Service> services;
 
-    public PdfUtility(List<Service> services) {
+    public PdfUtilityService(List<Service> services) {
         this.services = services;
     }
 

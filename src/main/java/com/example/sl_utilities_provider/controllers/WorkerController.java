@@ -2,7 +2,7 @@ package com.example.sl_utilities_provider.controllers;
 
 import com.example.sl_utilities_provider.entities.Worker;
 import com.example.sl_utilities_provider.repos.WorkerRepo;
-import com.example.sl_utilities_provider.utility.PdfUtility;
+import com.example.sl_utilities_provider.utility.PdfUtilityWorker;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +39,7 @@ public class WorkerController {
     @PostMapping("addWorker")
     public String addWorker(@Valid Worker worker, BindingResult result) {
         if (result.hasErrors()) {
+            System.out.println(result.toString());
             return "add-worker";
         }
         workerRepo.save(worker);
@@ -84,7 +85,7 @@ public class WorkerController {
 
         List<Worker> workers = workerRepo.findAll();
 
-        PdfUtility pdfUtility = new PdfUtility(workers);
+        PdfUtilityWorker pdfUtility = new PdfUtilityWorker(workers);
         pdfUtility.export(response);
 
     }

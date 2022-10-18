@@ -4,7 +4,7 @@ import com.example.sl_utilities_provider.entities.Worker;
 import com.example.sl_utilities_provider.repos.ServiceRepo;
 import com.example.sl_utilities_provider.repos.WorkerRepo;
 import com.example.sl_utilities_provider.utility.FileUploadUtil;
-import com.example.sl_utilities_provider.utility.PdfUtility;
+import com.example.sl_utilities_provider.utility.PdfUtilityService;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -99,7 +99,7 @@ public class ServiceControllerAdmin {
 
         List<Service> services = serviceRepo.findAll();
 
-        PdfUtility pdfUtility = new PdfUtility(services);
+        PdfUtilityService pdfUtility = new PdfUtilityService(services);
         pdfUtility.export(response);
 
     }

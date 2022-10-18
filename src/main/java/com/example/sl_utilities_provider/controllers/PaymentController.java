@@ -3,16 +3,22 @@ import com.example.sl_utilities_provider.entities.Payment;
 import com.example.sl_utilities_provider.entities.Service;
 import com.example.sl_utilities_provider.repos.PaymentRepo;
 import com.example.sl_utilities_provider.repos.ServiceRepo;
+import com.example.sl_utilities_provider.utility.PdfUtilityPayment;
+import com.example.sl_utilities_provider.utility.PdfUtilityService;
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -22,26 +28,32 @@ public class PaymentController {
     @Autowired
     PaymentRepo paymentRepo;
 
-    @GetMapping("list")
-    public String paymentList(Model model) {
+    @Autowired
+    ServiceRepo serviceRepo;
+
+    @GetMapping("list/{id}")
+    public String paymentList(@PathVariable( value = "id") long id,Model model) {
+        System.out.println(id);
+        model.addAttribute("service",serviceRepo.findById(id));
         model.addAttribute("payments", paymentRepo.findAll());
         return "card-details";
     }
 
-    @GetMapping("payment")
-    public String paymentCardList(Model model) {
+    @GetMapping("payment/{id}")
+    public String paymentCardList(Model model,@PathVariable( value = "id") long id) {
+        model.addAttribute("service",serviceRepo.findById(id).get());
         model.addAttribute("payment", new Payment());
         return "add-payment";
     }
 
 
-    @PostMapping("add")
-    public String addPayment(@Valid Payment payment, BindingResult result) {
+    @PostMapping("add/{id}")
+    public String addPayment(@Valid Payment payment, BindingResult result,@PathVariable( value = "id") long id) {
         if (result.hasErrors()) {
             return "add-payment";
         }
         paymentRepo.save(payment);
-        return "redirect:list";
+        return "redirect:/payments/list/"+id;
     }
 
 //    @GetMapping("showFormForUpdate/{id}")
@@ -60,5 +72,21 @@ public class PaymentController {
         // call delete payment method
         paymentRepo.deleteById(id);
         return "redirect:/payments/list";
+    }
+
+    @GetMapping("report/{id}")
+    public void exportToPDF(HttpServletResponse response,@PathVariable( value = "id") long id) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "inline; filename=users_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+
+        PdfUtilityPayment pdfUtility = new PdfUtilityPayment(serviceRepo.findById(id).get());
+        pdfUtility.export(response);
+
     }
 }

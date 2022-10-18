@@ -98,7 +98,7 @@
                                 <th scope="col">CVV </th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody th:object="${service}">
 
 
                             <tr th:each="payment : ${payments}">
@@ -113,6 +113,7 @@
 
                                 <td>
                                     <a  class="btn btn-danger" id="popUp">Remove</a>
+                                    <a  class="btn btn-danger"  th:href="@{/payments/report/{id}(id=${service.get().getId()})}">Buy</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -130,7 +131,7 @@
                         </div>
 
                         <div>
-                            <a href="/payments/payment">
+                            <a th:href="@{/payments/payment/{id}(id=${service.get().getId()})}">
                                 <button>Add New Card</button>
                             </a>
                         </div>
