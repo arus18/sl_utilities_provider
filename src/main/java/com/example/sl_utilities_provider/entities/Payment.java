@@ -1,5 +1,7 @@
 package com.example.sl_utilities_provider.entities;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "payment")
@@ -18,16 +20,28 @@ public class Payment {
     private String yy;
     @Column(name="cvv")
     private String cvv;
+
+//    private List<String> userIDs;
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "user_payment",
+//            joinColumns = @JoinColumn(name = "cardId"),
+//            inverseJoinColumns = @JoinColumn(name = "userId"))
+//    private List<Payment> payments = new ArrayList<>();
+
+
     public Payment() {
         super();
     }
     public Payment (long id,String cnumber,String holdername,String mm,String yy,String cvv){
-        this.id = id;
+        this.id= id;
         this.cnumber=cnumber;
         this.holdername=holdername;
         this.mm=mm;
         this.yy=yy;
         this.cvv=cvv;
+
     }
 
     public long getId(){ return id; }
